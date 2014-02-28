@@ -1,5 +1,3 @@
-from lib.fakegir_utils import utils as fakegir_utils
-
 fakegir_utils.realign_fakegir_path()
 
 from gi.repository import Gtk, Gdk
