@@ -1,13 +1,8 @@
 __author__ = 'kri'
 
-import sys
+from fakegir_utils import utils as fakegir_utils
 
-FAKEGIR_PATH = "/home/kri/.cache/fakegir"
-
-for path in sys.path:
-    if path == FAKEGIR_PATH:
-        sys.path.remove(path)
-        sys.path.append(path)
+fakegir_utils.realign_fakegir_path()
 
 from gi.repository import Gtk, Gdk
 
@@ -17,10 +12,13 @@ window.show_all()
 window.connect("destroy", Gtk.main_quit)
 
 # setting drag & drop.
-drag_target_lists = [('text/plain', 0, 0),
+# target - flags - id(Gdk.Atom / int / int)
+drag_target_lists = [
+    ('text/plain', 0, 0),
     ('TEXT', 0, 1),
     ('STRING', 0, 2),
-    ('text/uri-list', 0, 3)]
+    ('text/uri-list', 0, 3)
+]
 window.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
 window.drag_dest_set_target_list(drag_target_lists)
 
